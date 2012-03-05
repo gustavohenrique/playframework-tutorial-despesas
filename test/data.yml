@@ -1,0 +1,21 @@
+Tag(carro):
+    nome: carro
+    despesa: [estacionamento]
+
+Tag(passeio):
+    nome: passeio
+
+Tag(viagem):
+    nome: viagem
+
+Despesa(estacionamento):
+    data: 2012-03-04
+    descricao: Estacionamento
+    valor: -10.0
+    tags: carro
+
+Despesa(passagens):
+    data: 2012-03-04
+    descricao: Passagens aereas
+    valor: -500.0
+    tags: [viagem]

@@ -1,0 +1,36 @@
+#{if flash.success }
+  <p style="color:green">Sucesso! ${flash.success}</p>
+#{/if}
+
+#{ifErrors}
+   <p style="color:red">Foram encontrados erros</p>
+#{/ifErrors}
+
+<ul>
+  <li>
+    <label>Data</label>
+    <input type="date" name="despesa.data" value="${despesa?.data?.format()}"/> (Ex.: 2012-01-08)
+    <span class="error">#{error 'despesa.data' /}</span>
+  </li>
+  <li>
+    <label>Descricao</label>
+    <input type="text" name="despesa.descricao" value="${despesa?.descricao}"/>
+    <span class="error">#{error 'despesa.descricao' /}</span>
+  </li>
+  <li>
+    <label>Valor</label>
+    <input type="text" name="despesa.valor" value="${despesa?.valor}"/> (Ex.: 1.99)
+    <span class="error">#{error 'despesa.valor' /}</span>
+  </li>
+  <li>
+    <label>Tags</label>
+    <input type="text" name="tags" value="${tags}"/> (Ex.: tag1, tag2, tag3)
+    <span class="error">#{error 'despesa.tags' /}</span>
+  </li>
+</ul>
+
+<input type="hidden" name="despesa.id" value="${despesa?.id}"/>
+
+<input type="submit" name="submit" value="Salvar">
+<input type="button" name="cancel" value="Cancelar" onclick="window.location.href='@{Despesas.listar}'">
+<br><br>

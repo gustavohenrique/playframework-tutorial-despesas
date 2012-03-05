@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+
+#{set title:'Lista de Despesas' /}
+
+#{include 'Despesas/cadastrar.html' /}
+
+<h1>Despesas cadastradas</h1>
+<div>
+  #{if despesas }
+    <table cellpadding="0" cellspacing="0" border="1" width="700">
+      <thead>
+        <tr>
+          <th width="20">ID</th>
+          <th width="80">Data</th>
+          <th>Descricao</th>
+          <th width="200">Tags</th>
+          <th width="100">Valor</th>
+          <th width="100">Total</th>
+          <th width="100"></th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        %{ BigDecimal total = 0 %}
+      
+        #{list despesas, as:'despesa'}
+        
+          %{ total = total + despesa.valor %}
+        
+          <tr>
+            <td>${despesa.id}</td>
+            <td>${despesa.data}</td>
+            <td>${despesa.descricao}</td>
+            <td>${despesa.tags}</td>
+            <td>${despesa.valor}</td>
+            <td>${total}</td>
+            <td style="text-align:right">
+              <a href="@{Despesas.editar(despesa.id)}">Editar</a>&nbsp;
+              <a href="@{Despesas.deletar(despesa.id)}" onclick="if (!confirm('Tem certeza?')) return false;">Deletar</a>
+            </td>
+           </tr>
+        #{/list}
+      </tbody>
+    </table>
+  #{/if}
+  #{else}
+      Nenhuma despesa cadastrada.
+  #{/else}  
+</div>
